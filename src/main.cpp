@@ -1,5 +1,4 @@
 #include <Arduino.h>
-
 // ============================================================================
 // DEFINICIÓN DE PINES
 // ============================================================================
@@ -111,45 +110,6 @@ void loop() {
   u_1 = u;
   e_2 = e_1;
   e_1 = e;
-}
-
-// ============================================================================
-// DEFINICIÓN DE FUNCIONES AUXILIARES
-// ============================================================================
-
-void calcularParametros() {
-  alpha = exp(-T / tau);
-  k1 = Kc + (Kc * T / Ti) + (Kc * Td / T);
-  k2 = -Kc - (2.0 * Kc * Td / T);
-  k3 = Kc * Td / T;
-}
-
-void reiniciarVariables() {
-  u   = 0.0;
-  u_1 = 0.0;
-  u_2 = 0.0;
-  y   = 0.0;
-  y_1 = 0.0;
-  e   = 0.0;
-  e_1 = 0.0;
-  e_2 = 0.0;
-  r   = 10.0;
-
-  Serial.println("INICIO");
-  Serial.println("r ;      u ;      y");
-  Serial.flush();
-}
-
-void procesarComandosSerial() {
-  if (Serial.available() > 0) {
-    char ent = Serial.read();
-
-    if (ent == 'r') {
-      reiniciarVariables();
-    } else if (ent != '\r' && ent != '\n') {
-      Serial.println("Entrada no identificada");
-    }
-  }
 }
 
 // ============================================================================
